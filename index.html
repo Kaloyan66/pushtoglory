@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PushToGlory</title>
+  <link rel="icon" type="image/png" href="favicon.png" sizes="256x256" />
+  <link rel="apple-touch-icon" href="favicon.png" sizes="180x180" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Calendly inline embed (booking calendar) -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<style>
+:root{
+  --bg:#0b0805;
+  --gold:#d4af52;
+  --gold-bright:#f4e0a6;
+  --gold-deep:#9a7a30;
+  --cream:#f4ead6;
+  --muted:#b6a583;
+  --line:rgba(212,175,82,.22);
+  --card:rgba(20,14,8,.55);
+  --card-bd:rgba(212,175,82,.30);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:"Inter",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ============ HERO SHELL ============ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  width:100%;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 70% 48%, rgba(74,49,14,.55), rgba(11,8,5,0) 58%),
+    radial-gradient(140% 120% at 50% -10%, #18110a 0%, #0b0805 65%),
+    var(--bg);
+}
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background:radial-gradient(120% 100% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%);
+  pointer-events:none; z-index:6;
+}
+
+#gl{position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0}
+
+/* ============ HEADER / NAV ============ */
+header{
+  position:relative; z-index:10;
+  display:flex; align-items:center; justify-content:space-between; gap:28px;
+  padding:22px clamp(24px,3.4vw,56px) 14px;
+  max-width:1760px; margin:0 auto;
+}
+.brand{display:flex; align-items:center; gap:14px}
+.brand .mark{
+  width:46px; height:46px; flex:0 0 auto;
+  border:1.4px solid var(--gold); border-radius:8px;
+  display:grid; place-items:center; color:var(--gold-bright);
+  box-shadow:0 0 18px rgba(212,175,82,.18), inset 0 0 12px rgba(212,175,82,.10);
+}
+.brand .mark svg{width:24px;height:24px}
+.brand .mark img{height:34px;width:auto;display:block}
+.brand .name{font-family:"Cinzel",serif; line-height:1}
+.brand .name b{display:block; font-size:24px; font-weight:700; letter-spacing:.5px; color:#f6ecd6}
+.brand .name span{display:block; font-size:10px; letter-spacing:5px; color:var(--gold); margin-top:4px}
+
+nav{display:flex; align-items:center; gap:clamp(16px,2vw,34px)}
+nav a{
+  color:#e7dcc4; text-decoration:none;
+  font-size:13px; letter-spacing:1.6px; font-weight:500;
+  display:inline-flex; align-items:center; gap:6px; transition:color .2s;
+}
+nav a:hover{color:var(--gold-bright)}
+nav a .caret{font-size:9px; opacity:.8}
+
+.cta-call{
+  display:inline-flex; align-items:center; gap:14px;
+  padding:13px 16px 13px 22px;
+  border:1.4px solid var(--gold); border-radius:8px;
+  color:var(--gold-bright);
+  font-family:"Cinzel",serif; font-size:13px; letter-spacing:1.8px; font-weight:600;
+  background:linear-gradient(180deg, rgba(212,175,82,.08), rgba(212,175,82,.02));
+  box-shadow:0 0 22px rgba(212,175,82,.10), inset 0 0 14px rgba(212,175,82,.05);
+  cursor:pointer; transition:.25s; white-space:nowrap;
+}
+.cta-call:hover{background:rgba(212,175,82,.16); box-shadow:0 0 30px rgba(212,175,82,.22)}
+.cta-call .ico{width:26px;height:26px; display:grid; place-items:center; border:1px solid var(--line); border-radius:6px}
+.cta-call .ico svg{width:15px;height:15px}
+
+/* ============ MEANDER (GREEK KEY) DIVIDER ============ */
+.meander{
+  position:relative; z-index:8;
+  height:24px; width:100%; margin-top:4px; opacity:.6;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+
+/* ============ HERO GRID ============ */
+.hero-grid{
+  position:relative; z-index:5;
+  max-width:1760px; margin:0 auto;
+  padding:clamp(20px,3vw,46px) clamp(24px,3.4vw,56px) 40px;
+  display:grid;
+  grid-template-columns:minmax(420px,1fr) 1.05fr;
+  min-height:calc(100vh - 120px);
+}
+
+/* ============ LEFT COLUMN ============ */
+.left{display:flex; flex-direction:column; justify-content:center; max-width:660px}
+
+.badge{
+  display:inline-flex; align-items:center; gap:14px; align-self:flex-start;
+  padding:9px 20px; border:1px solid var(--line); border-radius:999px;
+  background:rgba(212,175,82,.05); color:var(--gold);
+  font-family:"Cinzel",serif; font-size:12px; letter-spacing:2.6px; font-weight:600;
+  margin-bottom:30px;
+}
+.badge svg{width:22px;height:16px}
+.badge svg.flip{transform:scaleX(-1)}
+
+h1{
+  font-family:"Playfair Display",serif; font-weight:600;
+  font-size:clamp(48px,6vw,98px); line-height:.98; letter-spacing:-1px;
+  margin:0 0 26px; color:#f6ecd8;
+}
+h1 .gold{
+  font-style:italic; font-weight:500;
+  background:linear-gradient(180deg,#f4e0a6,#c69a3e);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+.lede{font-size:clamp(17px,1.4vw,22px); line-height:1.55; color:#cfc3a6; max-width:480px; margin:0 0 36px}
+
+.btn-start{
+  align-self:flex-start; position:relative;
+  padding:18px 64px; border:none; cursor:pointer;
+  font-family:"Cinzel",serif; font-size:16px; letter-spacing:3px; font-weight:700;
+  color:#3a2a08; border-radius:6px;
+  background:linear-gradient(180deg,#f6e3a3 0%, #d9b257 38%, #b58a35 100%);
+  box-shadow:0 10px 30px rgba(180,138,53,.35), inset 0 0 0 1.5px rgba(255,247,214,.55), inset 0 0 0 5px rgba(154,122,48,.35);
+  transition:transform .2s, box-shadow .2s;
+}
+.btn-start:hover{transform:translateY(-2px); box-shadow:0 16px 40px rgba(180,138,53,.5), inset 0 0 0 1.5px rgba(255,247,214,.7), inset 0 0 0 5px rgba(154,122,48,.45)}
+
+.trusted{display:flex; align-items:center; gap:18px; margin-top:40px}
+.avatars{display:flex}
+.avatars img{
+  width:46px;height:46px;border-radius:50%; border:2px solid var(--gold);
+  object-fit:cover; margin-left:-14px; background:#241a0e; box-shadow:0 0 0 2px #0b0805;
+}
+.avatars img:first-child{margin-left:0}
+.trusted-txt .t{font-size:15px;color:#e7dcc4}
+.stars{color:var(--gold);font-size:15px;letter-spacing:3px;margin-top:3px}
+
+.awards{display:flex; gap:clamp(10px,1.8vw,34px); margin-top:46px}
+.award{display:flex; align-items:center; gap:5px; opacity:.95}
+.award .lau{width:24px; height:62px; flex:0 0 auto; color:var(--gold)}
+.award .lau.r{transform:scaleX(-1)}
+.award .txt{text-align:center; min-width:80px;
+  font-family:"Cinzel",serif; color:var(--gold); font-size:9px; letter-spacing:1px; line-height:1.4; font-weight:600}
+.award .txt b{display:block;font-size:13px;font-weight:700;margin:3px 0;color:var(--gold-bright)}
+.award .txt .w{display:block;font-size:8px;letter-spacing:3px;color:var(--muted);margin-top:2px}
+
+/* ============ RIGHT VISUAL LAYER ============ */
+.viz{position:relative}
+
+.card{
+  position:absolute; padding:18px 20px; border-radius:16px;
+  background:var(--card); border:1px solid var(--card-bd);
+  backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  box-shadow:0 18px 50px rgba(0,0,0,.55), 0 0 26px rgba(212,175,82,.06), inset 0 1px 0 rgba(255,237,196,.07);
+  animation:float 7s ease-in-out infinite;
+}
+.card::before{
+  content:""; position:absolute; top:14px; bottom:14px; right:9px; width:14px; opacity:.20;
+  background-image:repeating-linear-gradient(0deg,var(--gold) 0 2px, transparent 2px 5px);
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+.card .head{display:flex; align-items:center; gap:11px; margin-bottom:8px}
+.card .icon{
+  width:34px;height:34px;flex:0 0 auto;border-radius:50%; border:1.4px solid var(--gold);
+  display:grid;place-items:center;color:var(--gold); box-shadow:0 0 14px rgba(212,175,82,.18);
+}
+.card .icon svg{width:18px;height:18px}
+.card .label{font-size:11px;letter-spacing:2px;color:#e3d6b6;font-weight:600}
+.card .value{
+  font-family:"Playfair Display",serif; font-weight:600; color:var(--gold-bright);
+  font-size:44px; line-height:1; margin:2px 0 10px; text-shadow:0 0 22px rgba(212,175,82,.25);
+}
+.card .foot{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:8px;letter-spacing:.3px}
+.card .foot .up{color:#9fd6a0}
+.card svg.spark{display:block;width:100%;height:42px;overflow:visible}
+
+.card--campaign{ width:296px; top:5%;  left:48%; animation-delay:-1s }
+.card--roas    { width:228px; top:31%; left:18%; animation-delay:-3.5s }
+.card--audience{ width:236px; top:35%; right:0;  animation-delay:-2s }
+.card--channels{ width:258px; top:65%; left:23%; animation-delay:-5s }
+.card--growth  { width:262px; top:66%; right:0;  animation-delay:-4s }
+
+.aud{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.aud .value{margin:2px 0}
+.donut{width:64px;height:64px;flex:0 0 auto}
+.card--audience .foot{margin-top:6px}
+
+.chan{display:flex; align-items:center; gap:10px; margin:9px 0}
+.chan .ci{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;
+  font-family:"Cinzel",serif;font-size:11px;font-weight:700;color:#0b0805;flex:0 0 auto}
+.chan .nm{font-size:12px;color:#ddd0b2;width:88px;flex:0 0 auto}
+.chan .bar{flex:1;height:6px;border-radius:4px;background:rgba(212,175,82,.14);overflow:hidden}
+.chan .bar i{display:block;height:100%;background:linear-gradient(90deg,#b58a35,#f4e0a6);border-radius:4px}
+.chan .pc{font-size:11px;color:var(--gold);width:30px;text-align:right;flex:0 0 auto}
+
+/* ============ HERO VIDEO CARDS ============ */
+.vcard{position:absolute; z-index:5; width:clamp(116px,11vw,146px); padding:8px 8px 10px;
+  border-radius:16px; background:var(--card); border:1px solid var(--card-bd);
+  backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+  box-shadow:0 18px 50px rgba(0,0,0,.55), 0 0 26px rgba(212,175,82,.06), inset 0 1px 0 rgba(255,237,196,.07);
+  animation:float 7s ease-in-out infinite; cursor:pointer; transition:border-color .3s, box-shadow .3s, transform .3s}
+.vcard:hover{border-color:rgba(212,175,82,.55); box-shadow:0 22px 60px rgba(0,0,0,.6), 0 0 40px rgba(212,175,82,.16)}
+.vthumb{position:relative; border-radius:10px; overflow:hidden; aspect-ratio:9/16; background:#0f0b06}
+.vthumb video{width:100%; height:100%; object-fit:cover; display:block}
+.vplay{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,237,196,.5);
+  background:rgba(11,8,5,.42); color:var(--gold-bright); display:grid; place-items:center;
+  cursor:pointer; transition:.25s; -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px)}
+.vplay svg{width:18px; height:18px; margin-left:2px}
+.vplay:hover{background:rgba(212,175,82,.35); transform:translate(-50%,-50%) scale(1.08)}
+.vcard.sound .vplay{opacity:0; pointer-events:none}
+.vlabel{font-family:"Cinzel",serif; font-size:11px; letter-spacing:1.5px; color:var(--gold); text-align:center; margin-top:9px}
+
+.vcard--1{ top:3%;  left:29%; animation-delay:-1s }
+.vcard--2{ top:9%;  right:1%; animation-delay:-3.5s }
+.vcard--3{ top:50%; left:18%; animation-delay:-5s }
+.vcard--4{ top:55%; right:7%; animation-delay:-2s }
+
+/* ============ IONIC COLUMN ============ */
+.column{position:absolute; top:0; right:0; bottom:0; width:clamp(90px,9vw,150px); z-index:2; pointer-events:none; opacity:.92}
+.column .shaft{
+  position:absolute; left:14%; right:0; top:128px; bottom:0;
+  background:repeating-linear-gradient(90deg,
+      rgba(0,0,0,.55) 0 3px, #6d531f 3px 5px, #c9a24c 5px 11px,
+      #f0d68f 11px 13px, #c9a24c 13px 19px, #6d531f 19px 21px);
+  box-shadow:inset 18px 0 40px rgba(0,0,0,.6), -10px 0 40px rgba(0,0,0,.4);
+  border-left:1px solid rgba(212,175,82,.25);
+}
+.column .cap{position:absolute; left:0; right:0; top:0; height:138px}
+.column .cap svg{width:100%; height:100%}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1180px){
+  .hero-grid{grid-template-columns:1fr; min-height:auto}
+  .left{max-width:none; padding-bottom:30px}
+  .viz{height:auto; margin-top:24px; display:grid; grid-template-columns:repeat(2,1fr);
+       gap:18px; justify-items:center; align-items:start}
+  .vcard{position:static; width:100%; max-width:200px; animation:none}
+  .column{display:none}
+}
+@media (max-width:860px){
+  nav{display:none}
+}
+@media (max-width:430px){
+  .viz{grid-template-columns:1fr}
+  .vcard{max-width:240px}
+}
+
+/* ============================================================
+   SECTIONS BELOW THE HERO  (reuse hero design tokens)
+   ============================================================ */
+html{scroll-behavior:smooth}
+
+.section{position:relative; z-index:5; max-width:1320px; margin:0 auto;
+  padding:clamp(72px,9vw,128px) clamp(24px,3.4vw,56px)}
+.section-head{max-width:780px; margin:0 auto clamp(40px,5vw,66px); text-align:center; position:relative; z-index:2}
+.eyebrow{display:inline-flex; align-items:center; gap:12px; font-family:"Cinzel",serif;
+  font-size:12px; letter-spacing:3px; color:var(--gold); margin-bottom:18px; text-transform:uppercase}
+.eyebrow::before,.eyebrow::after{content:""; width:28px; height:1px; background:linear-gradient(90deg,transparent,var(--gold))}
+.eyebrow::after{background:linear-gradient(90deg,var(--gold),transparent)}
+h2.reveal{font-family:"Playfair Display",serif; font-weight:600; color:#f6ecd8;
+  font-size:clamp(32px,4.6vw,62px); line-height:1.06; letter-spacing:-.5px; margin:0}
+h2.reveal .hl{display:block}
+.reveal em,.em-gold{font-style:italic; font-weight:500;
+  background:linear-gradient(180deg,#f4e0a6,#c69a3e); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.section-sub{color:var(--muted); font-size:clamp(15px,1.15vw,18px); line-height:1.65; max-width:620px; margin:18px auto 0}
+
+.glass{position:relative; background:var(--card); border:1px solid var(--card-bd); border-radius:18px;
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 18px 50px rgba(0,0,0,.5), 0 0 26px rgba(212,175,82,.05), inset 0 1px 0 rgba(255,237,196,.06);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease}
+.glass:hover{transform:translateY(-5px); border-color:rgba(212,175,82,.55);
+  box-shadow:0 26px 64px rgba(0,0,0,.55), 0 0 42px rgba(212,175,82,.14)}
+
+.sec-glow{position:absolute; z-index:0; border-radius:50%; pointer-events:none; filter:blur(50px);
+  background:radial-gradient(circle, rgba(212,175,82,.16), transparent 70%)}
+
+.divider{max-width:1320px; margin:0 auto; padding:0 clamp(24px,3.4vw,56px); opacity:.5;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.divider svg{display:block; width:100%; height:24px}
+
+/* ---------- SERVICES ---------- */
+.services-grid{position:relative; z-index:1; display:grid; gap:18px; grid-template-columns:1fr}
+.svc{padding:26px 24px}
+.svc .ico{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;color:var(--gold);
+  border:1px solid var(--line); background:rgba(212,175,82,.05); margin-bottom:18px; box-shadow:inset 0 0 18px rgba(212,175,82,.06)}
+.svc .ico svg{width:25px;height:25px}
+.svc h3{font-family:"Playfair Display",serif; font-weight:600; color:#f3e7cf; font-size:21px; margin:0 0 9px}
+.svc p{color:var(--muted); font-size:14.5px; line-height:1.55; margin:0}
+.svc.featured{background:linear-gradient(155deg, rgba(212,175,82,.12), rgba(20,14,8,.55)); border-color:rgba(212,175,82,.45)}
+.svc.featured .tag{display:inline-block; font-family:"Cinzel",serif; font-size:10px; letter-spacing:2px;
+  color:#2a1e07; background:linear-gradient(180deg,#f4e0a6,#c69a3e); padding:5px 13px; border-radius:999px; margin-bottom:16px}
+.svc.featured h3{font-size:clamp(24px,2.4vw,30px)}
+.svc.featured p{font-size:16px; max-width:440px; line-height:1.6}
+.svc.featured .ico{width:60px;height:60px}
+.svc.featured .ico svg{width:30px;height:30px}
+@media(min-width:640px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .svc.featured{grid-column:1 / -1}
+}
+@media(min-width:1024px){
+  .services-grid{grid-template-columns:repeat(12,1fr); gap:20px}
+  .svc{grid-column:span 6}                 /* row 2 pair: 6 + 6 */
+  .svc.featured{grid-column:span 6; display:flex; flex-direction:column; justify-content:center}
+  .svc:nth-child(2),.svc:nth-child(3){grid-column:span 3}  /* row 1: 6 + 3 + 3 */
+}
+
+/* ---------- VALUE PROP ---------- */
+.valueprop{overflow:hidden}
+.value-wrap{position:relative; z-index:1; display:grid; gap:46px; grid-template-columns:1fr; align-items:center}
+.value-text p{color:#cfc3a6; font-size:clamp(16px,1.25vw,19px); line-height:1.75; margin:0 0 18px}
+.value-text p.lead{color:#f3e7cf; font-family:"Playfair Display",serif; font-size:clamp(20px,1.9vw,26px); line-height:1.45}
+.value-stats{display:grid; gap:16px}
+.stat-block{padding:24px 26px}
+.stat-block .num{font-family:"Playfair Display",serif; font-weight:600; color:var(--gold-bright);
+  font-size:clamp(40px,5vw,56px); line-height:1; text-shadow:0 0 24px rgba(212,175,82,.22)}
+.stat-block .cap{color:var(--cream); font-size:15px; margin-top:8px; font-weight:500}
+.stat-block .subc{color:var(--muted); font-size:13px; margin-top:3px}
+.value-pillar{position:absolute; right:-30px; top:-30px; width:min(38vw,460px); z-index:0;
+  opacity:.06; color:var(--gold); pointer-events:none}
+.value-pillar svg{width:100%; height:auto}
+@media(min-width:900px){ .value-wrap{grid-template-columns:1.08fr .92fr; gap:64px} }
+
+/* ---------- PROCESS ---------- */
+.proc-wrap{position:relative; margin-top:8px}
+.proc-track{position:relative; z-index:1; display:grid; gap:34px; grid-template-columns:1fr}
+.proc-line{position:absolute; z-index:0; border-radius:2px;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--gold-deep))}
+.step{position:relative}
+.step .n{font-family:"Playfair Display",serif; font-weight:700; font-size:clamp(46px,5vw,68px); line-height:1;
+  background:linear-gradient(180deg,#f4e0a6,#b58a35); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.step h3{font-family:"Playfair Display",serif; color:#f3e7cf; font-size:20px; margin:12px 0 7px}
+.step p{color:var(--muted); font-size:14px; line-height:1.55; margin:0; max-width:250px}
+@media(min-width:900px){
+  .proc-track{grid-template-columns:repeat(4,1fr); gap:26px}
+  .proc-line{left:6%; right:6%; top:40px; height:2px}
+}
+@media(max-width:899px){
+  .proc-track{padding-left:42px}
+  .proc-line{left:15px; top:8px; bottom:8px; width:2px}
+}
+
+/* ---------- RESULTS (video showcase) ---------- */
+.results{overflow:hidden}
+.results-grid{position:relative; z-index:1; display:grid; gap:24px; grid-template-columns:1fr}
+.result{padding:16px 16px 22px; text-align:center}
+.rv{position:relative; width:100%; max-width:300px; margin:0 auto; aspect-ratio:9/16;
+  border-radius:14px; overflow:hidden; background:#0f0b06; border:1px solid var(--line);
+  box-shadow:0 16px 40px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,237,196,.04)}
+.rv video{width:100%; height:100%; object-fit:cover; display:block}
+.rv-title{font-family:"Playfair Display",serif; color:#f3e7cf; font-size:19px; margin:16px 0 4px}
+.result .ctx{color:var(--muted); font-size:14px; line-height:1.55; margin:0 auto; max-width:300px}
+@media(min-width:640px){ .results-grid{grid-template-columns:repeat(2,1fr)} }
+@media(min-width:1100px){ .results-grid{grid-template-columns:repeat(3,1fr)} }
+
+/* ---------- FINAL CTA ---------- */
+.cta-section{position:relative; text-align:center; overflow:hidden; max-width:none;
+  padding:clamp(90px,12vw,168px) clamp(24px,3.4vw,56px)}
+.cta-glow{position:absolute; left:50%; top:50%; width:900px; height:900px; margin:-450px 0 0 -450px; z-index:0;
+  pointer-events:none; filter:blur(28px);
+  background:radial-gradient(circle, rgba(212,175,82,.22), rgba(212,175,82,.06) 36%, transparent 66%)}
+.cta-section .inner{position:relative; z-index:1; max-width:920px; margin:0 auto}
+.cta-section h2.reveal{font-size:clamp(38px,5.6vw,78px)}
+.cta-section .section-sub{margin:20px auto 38px}
+.btn-start.big{padding:22px clamp(40px,5vw,76px); font-size:18px}
+.cta-note{color:var(--muted); font-size:14px; margin-top:26px; letter-spacing:.3px}
+
+/* ---------- FOOTER ---------- */
+.footer{position:relative; z-index:5; border-top:1px solid var(--line);
+  padding:clamp(54px,7vw,84px) clamp(24px,3.4vw,56px) 28px; margin-top:24px}
+.footer-grid{max-width:1320px; margin:0 auto; display:grid; gap:40px; grid-template-columns:1fr}
+.f-tag{color:var(--muted); font-size:14px; margin:16px 0 0; max-width:280px; line-height:1.6}
+.f-cols{display:grid; gap:28px; grid-template-columns:repeat(3,1fr)}
+.f-col h4{font-family:"Cinzel",serif; font-size:12px; letter-spacing:2px; color:var(--gold); margin:0 0 16px}
+.f-col a{display:block; color:#cabfa6; text-decoration:none; font-size:14px; margin-bottom:11px; transition:color .2s}
+.f-col a:hover{color:var(--gold-bright)}
+.f-social{display:flex; gap:12px; align-items:flex-start}
+.f-social a{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);transition:.25s}
+.f-social a:hover{background:rgba(212,175,82,.12); border-color:var(--gold); transform:translateY(-2px)}
+.f-social svg{width:18px;height:18px}
+.f-fine{max-width:1320px; margin:42px auto 0; padding-top:22px; border-top:1px solid rgba(212,175,82,.12);
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; color:var(--muted); font-size:12px; letter-spacing:.3px}
+@media(min-width:860px){
+  .footer-grid{grid-template-columns:1.2fr 1.7fr 1fr; align-items:start}
+  .f-social{justify-content:flex-end}
+}
+
+/* ---------- BOOKING MODAL ---------- */
+.modal-overlay{position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:24px;
+  background:rgba(6,4,2,.72); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); opacity:0; transition:opacity .3s ease}
+.modal-overlay.open{display:flex; opacity:1}
+body.modal-open{overflow:hidden}
+.modal{position:relative; width:100%; max-width:480px;
+  background:linear-gradient(160deg, rgba(30,21,10,.97), rgba(14,10,6,.97));
+  border:1px solid var(--card-bd); border-radius:20px; padding:36px clamp(24px,4vw,40px);
+  box-shadow:0 40px 110px rgba(0,0,0,.7), 0 0 50px rgba(212,175,82,.10), inset 0 1px 0 rgba(255,237,196,.08);
+  transform:translateY(18px) scale(.98); transition:transform .3s ease}
+.modal-overlay.open .modal{transform:none}
+/* wide variant used for the Calendly booking calendar */
+.modal.modal--calendly{max-width:1040px; padding:0; overflow:hidden;
+  background:linear-gradient(160deg, rgba(20,14,8,.98), rgba(11,8,5,.98))}
+.modal.modal--calendly .close{top:12px; right:12px; z-index:3;
+  background:rgba(11,8,5,.55); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px)}
+.calendly-inline-widget{width:100%; min-width:320px; height:720px;
+  border-radius:20px; overflow:hidden}
+@media(max-width:680px){
+  .modal.modal--calendly{max-width:480px}
+  .calendly-inline-widget{height:78vh; min-height:560px}
+}
+.modal .close{position:absolute; top:14px; right:16px; width:34px; height:34px; border-radius:50%;
+  border:1px solid var(--line); background:transparent; color:var(--gold); font-size:20px; line-height:1; cursor:pointer;
+  display:grid; place-items:center; transition:.2s}
+.modal .close:hover{background:rgba(212,175,82,.12); border-color:var(--gold)}
+.m-eyebrow{font-family:"Cinzel",serif; font-size:11px; letter-spacing:3px; color:var(--gold); text-transform:uppercase}
+.modal h3{font-family:"Playfair Display",serif; font-weight:600; font-size:28px; color:#f6ecd8; margin:8px 0 8px}
+.modal .m-sub{color:var(--muted); font-size:14px; margin:0 0 22px; line-height:1.55}
+.field{margin-bottom:14px}
+.field label{display:block; font-family:"Cinzel",serif; font-size:11px; letter-spacing:1.5px; color:var(--gold); margin-bottom:6px}
+.field input,.field textarea{width:100%; background:rgba(0,0,0,.32); border:1px solid var(--line); border-radius:10px;
+  padding:12px 14px; color:var(--cream); font-family:"Inter",sans-serif; font-size:14px; outline:none; transition:border-color .2s}
+.field input:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{resize:vertical; min-height:84px}
+.modal .btn-start{width:100%; margin-top:6px; padding:16px; letter-spacing:2px; font-size:15px}
+.m-success{display:none; text-align:center; padding:14px 0 4px}
+.modal.done .m-form{display:none}
+.modal.done .m-success{display:block}
+.m-success .ok{font-family:"Playfair Display",serif; font-size:26px; color:var(--gold-bright); margin-bottom:10px}
+
+/* ---------- SERVICE EXPAND ---------- */
+.svc-toggle {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 16px; background: none; border: 1px solid var(--line);
+  border-radius: 999px; padding: 7px 16px; cursor: pointer;
+  font-family: "Cinzel", serif; font-size: 11px; letter-spacing: 2px;
+  color: var(--gold); transition: .25s;
+}
+.svc-toggle:hover { border-color: var(--gold); background: rgba(212,175,82,.08); }
+.svc-toggle .arr { font-size: 10px; transition: transform .3s; }
+.svc-toggle.open .arr { transform: rotate(180deg); }
+.svc-details {
+  max-height: 0; overflow: hidden;
+  transition: max-height .45s ease, opacity .35s ease;
+  opacity: 0;
+}
+.svc-details.open { max-height: 600px; opacity: 1; }
+.svc-details ul {
+  margin: 14px 0 4px; padding: 0; list-style: none;
+  border-top: 1px solid var(--line); padding-top: 14px;
+}
+.svc-details ul li {
+  color: var(--muted); font-size: 13.5px; line-height: 1.55;
+  padding: 5px 0 5px 18px; position: relative;
+}
+.svc-details ul li::before {
+  content: ""; position: absolute; left: 0; top: 13px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); opacity: .7;
+}
+
+/* ---------- FAQ ---------- */
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-q {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 4px; text-align: left;
+  font-family: "Playfair Display", serif; font-size: 18px;
+  color: #f3e7cf; gap: 16px; transition: color .2s;
+}
+.faq-q:hover { color: var(--gold-bright); }
+.faq-q .arr { font-size: 13px; color: var(--gold); flex-shrink: 0; transition: transform .3s; }
+.faq-q.open .arr { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .4s ease, opacity .3s ease; opacity: 0; }
+.faq-a.open { max-height: 300px; opacity: 1; }
+.faq-a p { color: var(--muted); font-size: 15px; line-height: 1.65; padding: 0 4px 22px; margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- hidden SVG defs: laurel wreath + sprig -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sprig" viewBox="0 0 64 26">
+      <path d="M2,20 C18,18 38,14 60,5" fill="none" stroke="#d4af52" stroke-width="1.4" stroke-linecap="round"/>
+      <g fill="#d4af52">
+        <path transform="translate(14,16) rotate(-28) scale(.7)"  d="M0,0 C5,-3 7,-11 0,-16 C-7,-11 -5,-3 0,0Z"/>
+        <path transform="translate(26,13) rotate(-24) scale(.75)" d="M0,0 C5,-3 7,-11 0,-16 C-7,-11 -5,-3 0,0Z"/>
+        <path transform="translate(38,10) rotate(-20) scale(.8)"  d="M0,0 C5,-3 7,-11 0,-16 C-7,-11 -5,-3 0,0Z"/>
+        <path transform="translate(50,7)  rotate(-16) scale(.7)"  d="M0,0 C5,-3 7,-11 0,-16 C-7,-11 -5,-3 0,0Z"/>
+      </g>
+    </symbol>
+
+    <!-- single laurel branch (curves up the left side; mirror for the right) -->
+    <symbol id="lau" viewBox="0 0 30 62">
+      <path d="M24,60 C12,50 7,36 8,22 C9,13 13,7 19,3"
+            fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <g fill="currentColor">
+        <ellipse cx="21" cy="55" rx="3.6" ry="1.8" transform="rotate(50 21 55)"/>
+        <ellipse cx="15" cy="47" rx="4"   ry="2"   transform="rotate(40 15 47)"/>
+        <ellipse cx="11" cy="38" rx="4.4" ry="2.1" transform="rotate(26 11 38)"/>
+        <ellipse cx="9"  cy="29" rx="4.6" ry="2.2" transform="rotate(10 9 29)"/>
+        <ellipse cx="10" cy="20" rx="4.4" ry="2.1" transform="rotate(-12 10 20)"/>
+        <ellipse cx="14" cy="11" rx="4"   ry="2"   transform="rotate(-34 14 11)"/>
+        <ellipse cx="19" cy="5"  rx="3.4" ry="1.7" transform="rotate(-54 19 5)"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<section class="hero">
+  <canvas id="gl"></canvas>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="brand">
+      <span class="mark">
+        <img src="logo.png" alt="PushToGlory" />
+      </span>
+      <span class="name"><b>PushToGlory</b><span>AI MARKETING</span></span>
+    </div>
+
+    <nav>
+      <a href="#services">SERVICES <span class="caret">&#9660;</span></a>
+      <a href="#why-ai">AI SOLUTIONS</a>
+      <a href="#results">OUR WORK</a>
+      <a href="#process">PROCESS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+
+    <button class="cta-call">BOOK A STRATEGY CALL
+      <span class="ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>
+        </svg>
+      </span>
+    </button>
+  </header>
+
+  <!-- ===== GREEK KEY DIVIDER ===== -->
+  <div class="meander">
+    <svg width="100%" height="24" preserveAspectRatio="none">
+      <defs>
+        <pattern id="gk" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M0,2 H22 V22 H4 V6 H18 V18 H8 V10 H14" fill="none" stroke="#d4af52" stroke-width="1.3"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="24" fill="url(#gk)"/>
+    </svg>
+  </div>
+
+  <!-- ===== MAIN GRID ===== -->
+  <div class="hero-grid">
+
+    <!-- LEFT -->
+    <div class="left">
+      <h1>AI-Powered<br>Creative<br><span class="gold">That Converts</span></h1>
+
+      <p class="lede">We produce AI-generated UGC, cinematic product videos, and performance ads for DTC brands that want better creative, faster delivery, and content that converts.</p>
+
+      <button class="btn-start">GET STARTED</button>
+    </div>
+
+    <!-- RIGHT VISUAL -->
+    <div class="viz">
+
+      <!-- VIDEO SHOWCASE CARDS -->
+      <div class="vcard vcard--1">
+        <div class="vthumb">
+          <video src="videos/ugc-1.mp4" poster="videos/ugc-1.jpg" muted loop autoplay playsinline preload="metadata"></video>
+          <button class="vplay" aria-label="Play with sound"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="vlabel">UGC Ad</div>
+      </div>
+
+      <div class="vcard vcard--2">
+        <div class="vthumb">
+          <video src="videos/madawi-white.mp4" poster="videos/madawi-white.jpg" muted loop autoplay playsinline preload="metadata"></video>
+          <button class="vplay" aria-label="Play with sound"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="vlabel">UGC Fragrance Review</div>
+      </div>
+
+      <div class="vcard vcard--4">
+        <div class="vthumb">
+          <video src="videos/traser-p99.mp4" poster="videos/traser-p99.jpg" muted loop autoplay playsinline preload="metadata"></video>
+          <button class="vplay" aria-label="Play with sound"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="vlabel">Story-Driven</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== IONIC COLUMN ===== -->
+  <div class="column" aria-hidden="true">
+    <div class="cap">
+      <svg viewBox="0 0 150 138" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="gcol" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5a4318"/><stop offset=".45" stop-color="#d9b257"/>
+            <stop offset=".7" stop-color="#f3dc92"/><stop offset="1" stop-color="#a07d33"/>
+          </linearGradient>
+        </defs>
+        <rect x="6" y="6" width="150" height="16" fill="url(#gcol)"/>
+        <rect x="2" y="22" width="150" height="40" fill="url(#gcol)"/>
+        <g fill="none" stroke="#5a4318" stroke-width="3">
+          <circle cx="34" cy="42" r="13"/><circle cx="34" cy="42" r="5"/>
+          <circle cx="92" cy="42" r="13"/><circle cx="92" cy="42" r="5"/>
+        </g>
+        <rect x="12" y="62" width="150" height="10" fill="url(#gcol)"/>
+        <rect x="20" y="72" width="150" height="56" fill="url(#gcol)"/>
+        <g stroke="#5a4318" stroke-width="2" opacity=".6">
+          <line x1="20" y1="86" x2="170" y2="86"/><line x1="20" y1="104" x2="170" y2="104"/>
+        </g>
+      </svg>
+    </div>
+    <div class="shaft"></div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<div class="divider"><svg width="100%" height="24" preserveAspectRatio="none"><rect width="100%" height="24" fill="url(#gk)"/></svg></div>
+
+<section class="section services" id="services">
+  <div class="sec-glow" style="width:520px;height:520px;left:-130px;top:8%" data-parallax="40"></div>
+  <div class="section-head">
+    <div class="eyebrow">Our Services</div>
+    <h2 class="reveal"><span class="hl">What We <em>Do</em></span></h2>
+    <p class="section-sub">A full-stack AI marketing engine. Creative, media, and growth, engineered for measurable results.</p>
+  </div>
+
+  <div class="services-grid">
+    <article class="glass svc featured">
+      <span class="tag">FLAGSHIP</span>
+      <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 5.6L19.5 9l-5.6 1.4L12 16l-1.9-5.6L4.5 9l5.6-1.4z"/><circle cx="19" cy="17.5" r="1.4"/><circle cx="5.5" cy="16.5" r="1"/></svg></span>
+      <h3>Performance Creative &amp; Paid Media</h3>
+      <p>From scroll-stopping UGC and cinematic product films to full-funnel Meta campaigns, we handle both the creative and the media. Every asset we produce is built to perform: as a paid ad, organic content, product listing, or brand presentation. AI lets us move faster, test more angles, and deliver higher quality than any traditional agency, at a fraction of the cost.</p>
+      <button class="svc-toggle"><span class="t">LEARN MORE</span><span class="arr">&#9660;</span></button>
+      <div class="svc-details">
+        <ul>
+          <li>AI-generated UGC, cinematic product films, and story-driven video ads</li>
+          <li>Static ad creatives, 10x more variants for A/B testing than traditional production</li>
+          <li>Full-funnel Meta campaign setup, management, and daily optimization</li>
+          <li>Hook-optimized scripts engineered for cold traffic and scroll-stopping performance</li>
+          <li>Creative assets built for multiple uses: paid ads, organic content, product listings, and brand presentations</li>
+          <li>Weekly creative iteration based on performance data, we kill losers fast and scale winners</li>
+          <li>Platform-specific formats: Meta Feed, Reels, Stories, Catalog ads</li>
+        </ul>
+      </div>
+    </article>
+    <article class="glass svc">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M8.6 11l2.4-2.4 2.4 2.4"/></svg></span>
+      <h3>SEO Optimization</h3>
+      <p>Rank higher and capture high-intent search traffic that converts.</p>
+      <button class="svc-toggle"><span class="t">LEARN MORE</span><span class="arr">&#9660;</span></button>
+      <div class="svc-details">
+        <ul>
+          <li>AI-assisted keyword research and content strategy targeting high-intent buyers</li>
+          <li>AI-written, human-edited SEO articles built to rank and convert</li>
+          <li>Technical SEO audit: site speed, crawlability, Core Web Vitals</li>
+          <li>Local SEO for brands with a regional presence</li>
+          <li>Monthly ranking reports with clear progress tracking</li>
+        </ul>
+      </div>
+    </article>
+    <article class="glass svc">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 19l1-4L16 5l3 3L9 18l-4 1z"/><path d="M14 7l3 3"/></svg></span>
+      <h3>Strategic Marketing &amp; Copywriting</h3>
+      <p>Messaging and positioning that makes the right people take action.</p>
+      <button class="svc-toggle"><span class="t">LEARN MORE</span><span class="arr">&#9660;</span></button>
+      <div class="svc-details">
+        <ul>
+          <li>Brand positioning and messaging strategy built around your ideal customer</li>
+          <li>Ad copy for Meta, Google, and organic social, tested across multiple angles</li>
+          <li>Landing page copy engineered for conversion</li>
+          <li>Email sequences: welcome flows, nurture, and sales automation</li>
+          <li>VSL and video ad scripts designed to move cold audiences to purchase</li>
+          <li>Competitor analysis and differentiation strategy</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== WHY AI / VALUE PROP ===================== -->
+<div class="divider"><svg width="100%" height="24" preserveAspectRatio="none"><rect width="100%" height="24" fill="url(#gk)"/></svg></div>
+
+<section class="section valueprop" id="why-ai">
+  <div class="value-pillar" aria-hidden="true" data-parallax="70">
+    <svg viewBox="0 0 120 340" fill="none" stroke="currentColor" stroke-width="3">
+      <rect x="12" y="6" width="96" height="14"/>
+      <path d="M18 20 Q60 40 102 20"/>
+      <g stroke-width="5">
+        <line x1="30" y1="40" x2="30" y2="312"/><line x1="45" y1="40" x2="45" y2="312"/>
+        <line x1="60" y1="40" x2="60" y2="312"/><line x1="75" y1="40" x2="75" y2="312"/>
+        <line x1="90" y1="40" x2="90" y2="312"/>
+      </g>
+      <rect x="12" y="312" width="96" height="16"/>
+    </svg>
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow">The AI Advantage</div>
+    <h2 class="reveal"><span class="hl">Why <em>AI</em> Changes</span><span class="hl">the Math</span></h2>
+  </div>
+
+  <div class="value-wrap">
+    <div class="value-text">
+      <p class="lead">AI lets us deliver better quality, more volume, and lower prices than a traditional agency ever could.</p>
+      <p>We produce hyper-realistic UGC, cinematic product ads, and story-driven video at a fraction of the time and cost, then put real media weight behind the winners.</p>
+      <p>UGC is one of the highest-converting formats in marketing, because real people sharing genuine experiences is what actually drives purchase decisions. AI lets us create that kind of social proof at a scale no shoot-based agency can match.</p>
+    </div>
+    <div class="value-stats">
+      <div class="glass stat-block"><div class="num"><span class="count" data-target="10" data-suffix="X">10X</span></div><div class="cap">Faster turnaround</div><div class="subc">from brief to finished ad creative</div></div>
+      <div class="glass stat-block"><div class="num"><span class="count" data-prefix="Up to " data-target="90" data-suffix="%">Up to 90%</span></div><div class="cap">Lower production cost</div><div class="subc">vs. traditional UGC and video shoots</div></div>
+      <div class="glass stat-block"><div class="num">Unlimited</div><div class="cap">Creative variations</div><div class="subc">test more angles, find winners faster</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<div class="divider"><svg width="100%" height="24" preserveAspectRatio="none"><rect width="100%" height="24" fill="url(#gk)"/></svg></div>
+
+<section class="section process" id="process">
+  <div class="section-head">
+    <div class="eyebrow">How We Work</div>
+    <h2 class="reveal"><span class="hl">Our <em>Process</em></span></h2>
+    <p class="section-sub">A clear path from strategy to scale. No guesswork, just compounding results.</p>
+  </div>
+
+  <div class="proc-wrap">
+    <span class="proc-line" aria-hidden="true"></span>
+    <div class="proc-track">
+      <div class="step"><div class="n">01</div><h3>Discovery &amp; Strategy</h3><p>We map your goals, audience, and offers into a clear growth plan.</p></div>
+      <div class="step"><div class="n">02</div><h3>Creative &amp; Production</h3><p>AI-powered UGC, ads, and video, produced fast and on-brand.</p></div>
+      <div class="step"><div class="n">03</div><h3>Launch &amp; Manage</h3><p>We deploy full-funnel campaigns and manage spend daily.</p></div>
+      <div class="step"><div class="n">04</div><h3>Optimize &amp; Scale</h3><p>We double down on winners and scale what drives revenue.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESULTS / SHOWCASE ===================== -->
+<div class="divider"><svg width="100%" height="24" preserveAspectRatio="none"><rect width="100%" height="24" fill="url(#gk)"/></svg></div>
+
+<section class="section results" id="results">
+  <div class="sec-glow" style="width:480px;height:480px;right:-110px;bottom:-40px" data-parallax="46"></div>
+  <div class="section-head">
+    <div class="eyebrow">Our Work</div>
+    <h2 class="reveal"><span class="hl">Work That <em>Performs</em></span></h2>
+    <p class="section-sub">AI-produced ad creative across luxury, fashion, and lifestyle.</p>
+  </div>
+
+  <div class="results-grid">
+    <article class="glass result">
+      <div class="rv"><video src="videos/ugc-1.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <div class="rv-title">UGC Creator Ad</div>
+      <div class="ctx">Authentic, scroll-stopping UGC that drives real purchase decisions.</div>
+    </article>
+    <article class="glass result">
+      <div class="rv"><video src="videos/madawi-white.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <div class="rv-title">Luxury Fragrance</div>
+      <div class="ctx">UGC creator review of a premium fragrance brand.</div>
+    </article>
+    <article class="glass result">
+      <div class="rv"><video src="videos/traser-p99.mp4" autoplay muted loop playsinline preload="metadata"></video></div>
+      <div class="rv-title">Tactical Watch</div>
+      <div class="ctx">Story-driven tactical watch ad.</div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<div class="divider"><svg width="100%" height="24" preserveAspectRatio="none"><rect width="100%" height="24" fill="url(#gk)"/></svg></div>
+
+<section class="section" id="faq">
+  <div class="section-head">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="reveal"><span class="hl">Common <em>Questions</em></span></h2>
+  </div>
+  <div class="faq-list" style="max-width:780px;margin:0 auto">
+    <div class="faq-item">
+      <button class="faq-q"><span>Do you only create content for ads?</span><span class="arr">&#9660;</span></button>
+      <div class="faq-a"><p>No. Every asset we produce can be used across multiple channels: paid ads, organic social, product listings, website hero sections, email campaigns, and brand presentations. AI lets us produce at a volume where you always have the right format for the right channel.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>How is this different from a traditional creative agency?</span><span class="arr">&#9660;</span></button>
+      <div class="faq-a"><p>Traditional agencies take 2 to 4 weeks to deliver a single video and charge accordingly. We deliver multiple creative variants in days, at a fraction of the cost, because AI handles the heavy production work. You get more to test, faster feedback loops, and lower spend per asset.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>What kinds of brands do you work with?</span><span class="arr">&#9660;</span></button>
+      <div class="faq-a"><p>We work with DTC e-commerce brands across fashion, beauty, lifestyle, accessories, and consumer products. If you sell physical products and need high-quality creative at scale, we are built for you.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Will the content actually look good, or will it look AI-generated?</span><span class="arr">&#9660;</span></button>
+      <div class="faq-a"><p>See the work section above. Our videos are produced with cinematic AI tools and refined to look and feel like premium brand content. The goal is never AI-looking output. It is content that performs.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>How do we get started?</span><span class="arr">&#9660;</span></button>
+      <div class="faq-a"><p>Book a free 30-minute strategy call. We will review your brand, your current creative, and your goals, then map out exactly what we would produce and how it would be used. No pitch, just a clear plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<div class="divider"><svg width="100%" height="24" preserveAspectRatio="none"><rect width="100%" height="24" fill="url(#gk)"/></svg></div>
+
+<section class="cta-section" id="contact">
+  <div class="cta-glow" data-parallax="28"></div>
+  <div class="inner">
+    <h2 class="reveal"><span class="hl">Ready to Push Your</span><span class="hl">Brand <em>To Glory?</em></span></h2>
+    <p class="section-sub">Book a free strategy call and we'll map exactly how AI-powered marketing can scale your brand.</p>
+    <button class="btn-start big">BOOK A STRATEGY CALL</button>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<div class="divider"><svg width="100%" height="24" preserveAspectRatio="none"><rect width="100%" height="24" fill="url(#gk)"/></svg></div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="f-brand">
+      <div class="brand">
+        <span class="mark"><img src="logo.png" alt="PushToGlory" /></span>
+        <span class="name"><b>PushToGlory</b><span>AI MARKETING</span></span>
+      </div>
+      <p class="f-tag">AI-powered marketing that wins.</p>
+    </div>
+
+    <div class="f-cols">
+      <div class="f-col">
+        <h4>SERVICES</h4>
+        <a href="#services">Performance Creative &amp; Paid Media</a>
+        <a href="#services">SEO Optimization</a>
+        <a href="#services">Strategic Marketing &amp; Copywriting</a>
+      </div>
+      <div class="f-col">
+        <h4>COMPANY</h4>
+        <a href="#why-ai">Why AI</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="f-col">
+        <h4>RESOURCES</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+
+    <div class="f-social">
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2.3h3.3l-7.2 8.3 8.5 11.1h-6.7l-5.2-6.8-6 6.8H1.6l7.7-8.8L1 2.3h6.8l4.7 6.2zM17 20h1.8L7.1 4.2H5.2z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8 19H5V8h3v11zM6.5 6.7a1.8 1.8 0 110-3.5 1.8 1.8 0 010 3.5zM20 19h-3v-5.6c0-3.4-4-3.1-4 0V19h-3V8h3v1.8c1.4-2.6 7-2.8 7 2.5V19z"/></svg></a>
+      <a href="mailto:info@pushtoglory.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+    </div>
+  </div>
+
+  <div class="f-fine">
+    <span>© 2026 PushToGlory. All rights reserved.</span>
+    <span>Built with AI · Designed for growth.</span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.svc-toggle').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var details = btn.nextElementSibling;
+    var isOpen = details.classList.contains('open');
+    details.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.querySelector('.t').textContent = isOpen ? 'LEARN MORE' : 'SHOW LESS';
+  });
+});
+</script>
+
+<script>
+/* ===== WebGL shader: glowing sacred-geometry network sphere ===== */
+(function(){
+  const canvas = document.getElementById('gl');
+  const gl = canvas.getContext('webgl', {alpha:true, premultipliedAlpha:false, antialias:true});
+  if(!gl){ console.warn('WebGL not available'); return; }
+
+  const vsrc = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.0,1.0); }`;
+
+  const fsrc = `
+    precision highp float;
+    uniform vec2  u_res;
+    uniform float u_time;
+    #define PI 3.141592653589793
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }
+
+    void main(){
+      vec2 center = vec2(0.77, 0.54) * u_res;
+      vec2 uv = (gl_FragCoord.xy - center) / u_res.y;
+      float t = u_time;
+      float r = length(uv);
+      float a = atan(uv.y, uv.x);
+
+      vec3 gold = vec3(0.92, 0.70, 0.30);
+      vec3 hot  = vec3(1.00, 0.93, 0.74);
+      vec3 col  = vec3(0.0);
+
+      /* stellar core */
+      col += hot * (0.0075 / (r*r + 0.00035));
+
+      /* 4-point diffraction spikes */
+      float sh = 0.0015/(abs(uv.y)+0.0016) * smoothstep(0.55,0.0,abs(uv.x));
+      float sv = 0.0015/(abs(uv.x)+0.0016) * smoothstep(0.55,0.0,abs(uv.y));
+      col += hot * (sh + sv) * 0.45;
+
+      /* halo */
+      col += gold * exp(-r*2.5) * 0.16;
+
+      /* outer radar rings */
+      float rings = 0.0;
+      for(int i=1;i<=10;i++){
+        float rr = float(i)*0.072;
+        rings += smoothstep(0.0035,0.0, abs(r-rr));
+      }
+      col += gold * rings * 0.075;
+
+      /* geometric web inside sphere */
+      float sphere = smoothstep(0.60, 0.50, r);
+      float aa = a + t*0.05;
+      float spokes = smoothstep(0.025,0.0, abs(fract(aa/(PI/12.0)+0.5)-0.5));
+      float radial = 0.0;
+      for(int i=1;i<=6;i++){
+        float rr = float(i)*0.095;
+        radial += smoothstep(0.004,0.0, abs(r-rr));
+      }
+      col += gold * (spokes*0.05 + radial*0.05) * sphere;
+
+      /* flower-of-life arcs */
+      float fol = 0.0;
+      for(int i=0;i<6;i++){
+        float ang = float(i)*PI/3.0 + t*0.05;
+        vec2 c = vec2(cos(ang), sin(ang))*0.20;
+        fol += smoothstep(0.004,0.0, abs(length(uv-c)-0.20));
+      }
+      col += gold * fol * 0.05 * sphere;
+
+      /* twinkling nodes */
+      vec2 g = uv * 8.0;
+      vec2 id = floor(g);
+      vec2 f  = fract(g) - 0.5;
+      float h = hash(id);
+      vec2 node = (vec2(hash(id+1.3), hash(id+7.1)) - 0.5) * 0.7;
+      float nd = length(f - node);
+      float tw = 0.55 + 0.45*sin(t*2.0 + h*6.2831);
+      col += hot * smoothstep(0.14,0.0,nd) * tw * sphere * 0.6;
+
+      col *= smoothstep(1.15, 0.15, r) + 0.04;
+      col = pow(col, vec3(0.88));
+      float alpha = clamp(max(col.r, max(col.g, col.b)) * 1.35, 0.0, 1.0);
+      gl_FragColor = vec4(col, alpha);
+    }
+  `;
+
+  function compile(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsrc));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsrc));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, 'p');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uRes  = gl.getUniformLocation(prog, 'u_res');
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+  gl.clearColor(0,0,0,0);
+
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = canvas.clientWidth  * dpr;
+    const h = canvas.clientHeight * dpr;
+    if(canvas.width !== w || canvas.height !== h){
+      canvas.width = w; canvas.height = h;
+      gl.viewport(0,0,w,h);
+    }
+  }
+  window.addEventListener('resize', resize);
+
+  const start = performance.now();
+  function frame(){
+    resize();
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, (performance.now()-start)/1000);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    requestAnimationFrame(frame);
+  }
+  resize();
+  frame();
+})();
+</script>
+
+<!-- ===== GSAP + ScrollTrigger ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  /* Respect reduced-motion and missing GSAP: leave everything visible & static */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!window.gsap || reduce) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* 1: section heading lines: rise + fade with stagger */
+  gsap.utils.toArray('h2.reveal').forEach(function(h){
+    gsap.from(h.querySelectorAll('.hl'), {
+      y:46, opacity:0, duration:0.9, ease:'power3.out', stagger:0.12,
+      scrollTrigger:{ trigger:h, start:'top 85%' }
+    });
+  });
+
+  /* eyebrows + sublines */
+  gsap.utils.toArray('.eyebrow, .section-sub').forEach(function(el){
+    gsap.from(el, { y:20, opacity:0, duration:0.8, ease:'power3.out',
+      scrollTrigger:{ trigger:el, start:'top 90%' } });
+  });
+
+  /* 2: card / item groups: fade up, stagger 0.12s, trigger at ~75% */
+  ['.services-grid','.value-stats','.proc-track','.results-grid'].forEach(function(sel){
+    var c = document.querySelector(sel); if(!c) return;
+    gsap.from(c.children, { y:44, opacity:0, duration:0.9, ease:'power3.out', stagger:0.12,
+      scrollTrigger:{ trigger:c, start:'top 75%' } });
+  });
+
+  /* value-prop paragraphs */
+  var vt = document.querySelector('.value-text');
+  if(vt) gsap.from(vt.querySelectorAll('p'), { y:26, opacity:0, duration:0.85, ease:'power3.out', stagger:0.12,
+    scrollTrigger:{ trigger:vt, start:'top 78%' } });
+
+  /* CTA button + trust row */
+  gsap.from('.cta-section .btn-start, .cta-section .cta-note', { y:30, opacity:0, duration:0.9, ease:'power3.out', stagger:0.12,
+    scrollTrigger:{ trigger:'.cta-section', start:'top 72%' } });
+
+  /* footer columns */
+  gsap.from('.footer-grid > *', { y:30, opacity:0, duration:0.85, ease:'power3.out', stagger:0.1,
+    scrollTrigger:{ trigger:'.footer', start:'top 88%' } });
+
+  /* 3: parallax: decorative glows / pillar drift slower than scroll */
+  gsap.utils.toArray('[data-parallax]').forEach(function(el){
+    var d = parseFloat(el.getAttribute('data-parallax')) || 40;
+    gsap.fromTo(el, { y:-d }, { y:d, ease:'none',
+      scrollTrigger:{ trigger: el.closest('section') || el.parentElement, start:'top bottom', end:'bottom top', scrub:true } });
+  });
+
+  /* 4: count-up stat numbers when scrolled into view */
+  function fmt(v, dec){ return dec>0 ? v.toFixed(dec) : Math.round(v).toLocaleString(); }
+  gsap.utils.toArray('.count').forEach(function(el){
+    var target = parseFloat(el.getAttribute('data-target')) || 0;
+    var dec    = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var pre    = el.getAttribute('data-prefix') || '';
+    var suf    = el.getAttribute('data-suffix') || '';
+    ScrollTrigger.create({ trigger:el, start:'top 88%', once:true, onEnter:function(){
+      var o = { v:0 }; el.textContent = pre + fmt(0,dec) + suf;
+      gsap.to(o, { v:target, duration:1.6, ease:'power3.out',
+        onUpdate:function(){ el.textContent = pre + fmt(o.v,dec) + suf; },
+        onComplete:function(){ el.textContent = pre + fmt(target,dec) + suf; } });
+    }});
+  });
+
+  /* 5: process connector line draws itself in (axis depends on layout) */
+  var mm = gsap.matchMedia();
+  mm.add('(min-width:900px)', function(){
+    gsap.fromTo('.proc-line', { scaleX:0 }, { scaleX:1, transformOrigin:'left center', ease:'none',
+      scrollTrigger:{ trigger:'.process', start:'top 68%', end:'center 60%', scrub:true } });
+  });
+  mm.add('(max-width:899px)', function(){
+    gsap.fromTo('.proc-line', { scaleY:0 }, { scaleY:1, transformOrigin:'top center', ease:'none',
+      scrollTrigger:{ trigger:'.process', start:'top 80%', end:'bottom 72%', scrub:true } });
+  });
+
+  window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+})();
+</script>
+
+<!-- ===== Booking modal ===== -->
+<div class="modal-overlay" id="bookModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+    <button class="close" id="bookClose" aria-label="Close">&times;</button>
+    <div class="m-form">
+      <div class="m-eyebrow">Free Strategy Call</div>
+      <h3 id="bookTitle">Book a Strategy Call</h3>
+      <p class="m-sub">Tell us about your brand and we'll map how AI-powered marketing can scale it. We reply within 24 hours.</p>
+      <form id="bookForm" novalidate>
+        <div class="field"><label for="bk-name">Name</label><input id="bk-name" name="name" required></div>
+        <div class="field"><label for="bk-email">Email</label><input id="bk-email" type="email" name="email" required></div>
+        <div class="field"><label for="bk-co">Website / Brand</label><input id="bk-co" name="company"></div>
+        <div class="field"><label for="bk-goals">What do you want to achieve?</label><textarea id="bk-goals" name="goals"></textarea></div>
+        <button class="btn-start" type="submit">REQUEST MY CALL</button>
+      </form>
+    </div>
+    <div class="m-success">
+      <div class="ok">Request received &#10022;</div>
+      <p class="m-sub">Thanks! We'll be in touch within 24 hours to schedule your strategy call.</p>
+      <button class="btn-start" id="bookDone" type="button">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* =========================================================================
+     BOOKING: connect Base44 here.
+     Build your booking app in Base44, publish it, copy its URL, and paste it
+     below. When set, every "Book a Strategy Call" button opens your Base44 app
+     inside the modal. Leave it "" to use the built-in form (emails you the lead).
+     ========================================================================= */
+  /* =========================================================================
+     CALENDLY BOOKING CALENDAR  ← paste your link here
+     1. Create a free account at https://calendly.com
+     2. Make an event type (e.g. "Strategy Call", 30 min)
+     3. Copy its public link and paste it below, replacing the placeholder.
+     When a real link is set, every "Book a Strategy Call" button opens the
+     Calendly calendar (like the screenshot). If left as the placeholder/empty,
+     it falls back to the built-in form so the site keeps working.
+     ========================================================================= */
+  var CALENDLY_URL = "https://calendly.com/pushtoglory-info";
+
+  var BASE44_BOOKING_URL = "";   // optional: paste a Base44 app URL to embed it instead of the form
+  var CONTACT_EMAIL = "info@pushtoglory.com";
+  /* Bookings are saved to your Supabase "pushtogl0ory" project (publishable key is safe in the browser) */
+  var SUPABASE_URL = "https://jdcoqyltmckyrexibvcz.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_R1yoA2xYYriUAMdhzrEJBw_eUeLqPzV";
+  /* EMAIL NOTIFICATIONS: get a free key at https://web3forms.com (enter info@pushtoglory.com),
+     then paste it below. Until it's set, leads are still saved to Supabase (visible in your dashboard). */
+  var WEB3FORMS_KEY = "3c15cfad-a415-4de7-aef6-952923becffa";
+
+  var overlay = document.getElementById('bookModal');
+  var modal   = overlay.querySelector('.modal');
+  var form    = document.getElementById('bookForm');
+  var lastFocus = null;
+
+  /* a Calendly link is "live" only once the placeholder is replaced */
+  function calendlyReady(){
+    return CALENDLY_URL && CALENDLY_URL.indexOf('YOUR-USERNAME') === -1;
+  }
+  /* append the gold theme + tidy options to the Calendly URL */
+  function themedCalendlyUrl(){
+    var sep = CALENDLY_URL.indexOf('?') === -1 ? '?' : '&';
+    return CALENDLY_URL + sep +
+      'hide_gdpr_banner=1' +
+      '&background_color=0b0805' +
+      '&text_color=f4ead6' +
+      '&primary_color=d4af52';
+  }
+  function renderCalendly(){
+    modal.classList.remove('done');
+    modal.classList.add('modal--calendly');
+    modal.innerHTML =
+      '<button class="close" id="bookClose" aria-label="Close">&times;</button>' +
+      '<div class="calendly-inline-widget" data-url="' + themedCalendlyUrl() + '"></div>';
+    modal.querySelector('#bookClose').addEventListener('click', closeModal);
+    var holder = modal.querySelector('.calendly-inline-widget');
+    if(window.Calendly){
+      window.Calendly.initInlineWidget({ url: themedCalendlyUrl(), parentElement: holder });
+    } else {
+      /* widget.js still loading — retry briefly until it's available */
+      var tries = 0, t = setInterval(function(){
+        if(window.Calendly){ clearInterval(t);
+          window.Calendly.initInlineWidget({ url: themedCalendlyUrl(), parentElement: holder });
+        } else if(++tries > 40){ clearInterval(t); }
+      }, 150);
+    }
+  }
+
+  function openModal(){
+    lastFocus = document.activeElement;
+    modal.classList.remove('modal--calendly');
+    if(calendlyReady()){
+      renderCalendly();
+    } else if(BASE44_BOOKING_URL){
+      modal.classList.remove('done');
+      modal.innerHTML =
+        '<button class="close" id="bookClose" aria-label="Close">&times;</button>' +
+        '<iframe src="' + BASE44_BOOKING_URL + '" title="Book a Strategy Call" ' +
+        'style="width:100%;height:72vh;border:0;border-radius:12px;display:block"></iframe>';
+      modal.querySelector('#bookClose').addEventListener('click', closeModal);
+    }
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    var f = modal.querySelector('input,iframe,button'); if(f) f.focus();
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    if(lastFocus) lastFocus.focus();
+  }
+
+  /* every "Book a Strategy Call" button opens the modal */
+  document.querySelectorAll('.cta-call, .cta-section .btn-start').forEach(function(b){
+    b.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+  });
+  /* hero GET STARTED scrolls to the booking section */
+  var getStarted = document.querySelector('.hero .btn-start');
+  if(getStarted) getStarted.addEventListener('click', function(){
+    var c = document.getElementById('contact'); if(c) c.scrollIntoView({behavior:'smooth'});
+  });
+
+  /* close interactions */
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+  var closeBtn = document.getElementById('bookClose'); if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+
+  /* built-in form: emails the lead to you, then shows a success state */
+  if(form){
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var d = new FormData(form);
+      var name = (d.get('name') || '').trim();
+      var email = (d.get('email') || '').trim();
+      if(!name || !email){
+        var first = form.querySelector('input[required]'); if(first) first.focus(); return;
+      }
+      var lead = { name:name, email:email, company:(d.get('company')||'').trim(), goals:(d.get('goals')||'').trim() };
+      var btn = form.querySelector('button[type="submit"]'); var orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'SENDING…';
+
+      // 1) save the lead to your Supabase database
+      var saveDB = fetch(SUPABASE_URL + '/rest/v1/bookings', {
+        method:'POST',
+        headers:{ 'apikey':SUPABASE_KEY, 'Authorization':'Bearer ' + SUPABASE_KEY,
+                  'Content-Type':'application/json', 'Prefer':'return=minimal' },
+        body: JSON.stringify(lead)
+      }).then(function(r){ if(!r.ok) throw new Error('db ' + r.status); });
+
+      // 2) email you a notification via Web3Forms (set WEB3FORMS_KEY above)
+      var sendMail = WEB3FORMS_KEY
+        ? fetch('https://api.web3forms.com/submit', {
+            method:'POST',
+            headers:{ 'Content-Type':'application/json', 'Accept':'application/json' },
+            body: JSON.stringify({
+              access_key: WEB3FORMS_KEY,
+              subject: 'New Strategy Call Request: ' + name,
+              from_name: 'PushToGlory Website',
+              Name: name, Email: email,
+              'Website / Brand': lead.company || 'Not provided',
+              Goals: lead.goals || 'Not provided'
+            })
+          }).then(function(r){ if(!r.ok) throw new Error('mail ' + r.status); })
+        : Promise.reject(new Error('email key not set'));
+
+      var results = await Promise.allSettled([saveDB, sendMail]);
+      var ok = results.some(function(r){ return r.status === 'fulfilled'; });
+      if(ok){
+        modal.classList.add('done');
+      } else {
+        // last-resort fallback: open the visitor's email client
+        window.location.href = 'mailto:' + CONTACT_EMAIL +
+          '?subject=' + encodeURIComponent('Strategy Call Request: ' + name) +
+          '&body=' + encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nWebsite/Brand: '+lead.company+'\n\nGoals:\n'+lead.goals);
+        modal.classList.add('done');
+      }
+      btn.disabled = false; btn.textContent = orig;
+    });
+  }
+  var doneBtn = document.getElementById('bookDone'); if(doneBtn) doneBtn.addEventListener('click', closeModal);
+})();
+</script>
+
+<script>
+/* Hero video cards: autoplay muted + loop; click a card to play it with sound */
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.vcard'));
+  cards.forEach(function(card){
+    var v = card.querySelector('video');
+    if(!v) return;
+    card.addEventListener('click', function(){
+      if(v.muted){
+        cards.forEach(function(o){
+          var ov = o.querySelector('video');
+          if(ov && ov !== v){ ov.muted = true; o.classList.remove('sound'); }
+        });
+        v.muted = false;
+        var p = v.play(); if(p && p.catch) p.catch(function(){});
+        card.classList.add('sound');
+      } else {
+        v.muted = true;
+        card.classList.remove('sound');
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var ans = btn.nextElementSibling;
+    var isOpen = ans.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(function(a){ a.classList.remove('open'); });
+    document.querySelectorAll('.faq-q').forEach(function(q){ q.classList.remove('open'); });
+    if (!isOpen) { ans.classList.add('open'); btn.classList.add('open'); }
+  });
+});
+</script>
+</body>
+</html>
