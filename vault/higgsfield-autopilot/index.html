@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Higgsfield Autopilot | The Vault</title>
+<meta name="description" content="A command line tool that runs unattended AI video generation on your own Higgsfield account. Plain text scenes, endless cycles, crash safe, and it refuses to spend credits.">
+
+<link rel="canonical" href="https://pushtoglory.com/vault/higgsfield-autopilot/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Higgsfield Autopilot | The Vault">
+<meta property="og:description" content="A command line tool that runs unattended AI video generation on your own Higgsfield account. Plain text scenes, endless cycles, crash safe, and it refuses to spend credits.">
+<meta property="og:url" content="https://pushtoglory.com/vault/higgsfield-autopilot/">
+<meta property="og:image" content="https://pushtoglory.com/vault/assets/vault-share.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07070A">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="256x256">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Syne:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/vault/assets/vault.css?v=mtxhnuxg">
+
+</head>
+<body data-slug="higgsfield-autopilot" data-tier="premium">
+<div class="v-page">
+  <div class="v-noise" aria-hidden="true"></div>
+  <header class="v-head">
+  <div class="v-head-in">
+    <a class="v-brand" href="/vault/" aria-label="The Vault home">
+      <span class="v-avatar"><img src="/kaloyan.jpg" alt="Kaloyan Vasilev" width="32" height="32"></span>
+      <span class="v-brand-word">THE VAULT</span>
+    </a>
+    <nav class="v-nav" aria-label="Vault">
+      <a href="/vault/#library">Library</a>
+      <a href="/vault/#pricing">Pricing</a>
+    </nav>
+    <button class="v-burger" type="button" data-v="burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <div class="v-acct" id="vAcct"></div>
+  </div>
+  <div class="v-progress" aria-hidden="true"></div>
+</header>
+  <main>
+  <section class="r-hero premium">
+    <div class="r-hero-in">
+      <div class="r-crumb"><a href="/vault/#library">The Vault</a><span class="sep"></span><span>Automation</span></div>
+      <div class="r-badges"><span class="badge badge-premium">Premium</span><span class="badge badge-soft">Workflow 09</span><span class="badge badge-open" data-when="member" hidden>Unlocked</span></div>
+      <h1 class="r-title"><em>Higgsfield</em> Autopilot</h1>
+      <p class="r-sub">Write your scenes once as plain text files. Run one command. It renders every scene on your own Higgsfield account, one after another, while you do something else.</p>
+      <div class="r-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>Node.js &middot; Higgsfield &middot; Seedance</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 20V14M12 20V9M19 20V4"/></svg>Intermediate</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>1 file included</span>
+      </div>
+      <div class="r-author"><span class="v-avatar"><img src="/kaloyan.jpg" alt="Kaloyan Vasilev" width="40" height="40"></span><div><b>Kaloyan Vasilev</b><span>AI Video Expert</span></div></div>
+      <div class="r-actions">
+        <button class="btn btn-gold btn-lg" type="button" data-v="plans" data-when="locked">Unlock with Premium<span class="sheen"></span></button>
+        <button class="btn btn-ghost btn-lg" type="button" data-v="signin" data-when="locked">Member sign in</button>
+        <a class="btn btn-gold btn-lg" href="#premiumRoot" data-when="member" hidden>Open the workflow<span class="sheen"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="r-layout">
+    <aside class="r-toc" aria-label="On this page">
+      <span class="eyebrow">On this page</span>
+      <ol id="tocList"></ol>
+    </aside>
+    <div class="r-main" id="article" data-progress>
+      <details class="r-toc-mobile" id="tocM"><summary>On this page</summary><ol id="tocListM"></ol></details>
+      <div class="prose">
+<p class="lead">Batch production has a boring bottleneck: you, clicking Generate, waiting four minutes, downloading, renaming, clicking Generate again. Autopilot removes you from that loop.</p><p>You write each scene as one text file. Settings above a line, the prompt below it. Run one command and it works through every scene, saves each clip into a tidy folder, and starts the next cycle. It keeps going until you stop it.</p><h2 id="what-it-handles-for-you" data-toc="What it handles for you"><span class="kick">What it does</span>What it handles for you</h2><ul class="dl"><li><i>✓</i><span><strong>Runs unattended.</strong> Every scene, every cycle, while your computer is awake</span></li><li><i>✓</i><span><strong>No extra credits.</strong> It runs only on the unlimited generations your Higgsfield plan includes, and refuses to start anything that would spend credits</span></li><li><i>✓</i><span><strong>Never loses work.</strong> Crash, reboot or a closed laptop, it picks up exactly where it stopped</span></li><li><i>✓</i><span><strong>Organises everything.</strong> One folder per cycle, one file per scene</span></li><li><i>✓</i><span><strong>Your folder is the truth.</strong> Edit a scene and run again, and it renders what you just wrote</span></li><li><i>✓</i><span><strong>Handles failures alone.</strong> It waits when the queue is busy, retries what is worth retrying and stops with a plain English reason when a setting is wrong</span></li><li><i>✓</i><span><strong>Variations built in.</strong> Put options in curly brackets and every cycle picks a different version automatically</span></li></ul><h2 id="a-real-browser-not-a-hack" data-toc="A real browser, not a hack"><span class="kick">How it works</span>A real browser, not a hack</h2><p>A real browser stays signed in to your Higgsfield account and acts only as the session holder. Each job goes out as a normal request from inside that page, so your session travels with it. Nothing clicks buttons or fills forms, which means a site redesign cannot break it. Job state is saved after every change, which is why it survives being killed at any moment.</p><h2 id="honest-limits" data-toc="Honest limits"><span class="kick">Before you buy</span>Honest limits</h2><ul class="arrows"><li><strong>You need a Higgsfield plan with unlimited generations.</strong> That is not included.</li><li><strong>One clip at a time.</strong> That is the Higgsfield plan's limit, not the tool's.</li><li><strong>It cannot render while your computer sleeps.</strong> It resumes correctly after.</li><li><strong>Which models are free changes over time.</strong> The tool tells you what is free on your account right now.</li><li><strong>It automates your own account.</strong> Review Higgsfield's terms before running it around the clock, and keep the pace reasonable.</li><li><strong>You will use a terminal.</strong> The guide walks you through every command, and setup takes about ten minutes, once. Windows is the main target; Mac and Linux work with one small difference.</li></ul><h2 id="inside-premium" data-toc="Inside Premium"><span class="kick">What is inside</span>Inside Premium</h2><ul class="arrows"><li><strong>The complete tool</strong>, ready to install, with a two scene demo project</li><li><strong>The setup guide</strong>, click by click, from installing Node.js to your first test run</li><li><strong>The scene file format</strong>, reference images, variations and every setting explained</li><li><strong>Every command</strong>, and a troubleshooting table for every error you are likely to see</li></ul>
+      </div>
+      <div class="lock" id="lockPanel">
+  <div class="lock-fade" aria-hidden="true"><div class="sk h"></div><div class="sk"></div><div class="sk" style="width:92%"></div><div class="sk" style="width:84%"></div><div class="sk h" style="width:36%"></div><div class="sk"></div><div class="sk" style="width:76%"></div></div>
+  <div class="lock-card"><div class="lock-in">
+    <div class="corners"><i></i><i></i><i></i><i></i></div>
+    <div class="lock-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4.5" y="10.5" width="15" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
+    <h3>The full workflow is in Premium</h3>
+    <p>The step by step build and the files (higgsfield-autopilot.zip) open the moment you join. So does every other premium workflow.</p>
+    <div class="lock-plans">
+      <button class="btn btn-gold btn-block" type="button" data-checkout="yearly">$5.99 / mo yearly<span class="sheen"></span></button>
+      <button class="btn btn-ghost btn-block" type="button" data-checkout="monthly">$10.99 / mo monthly</button>
+    </div>
+    <div class="lock-alt">Already a member? <button type="button" data-v="signin">Sign in</button> &middot; <a href="/vault/#pricing">Compare plans</a></div>
+  </div></div>
+</div>
+<div id="premiumRoot" hidden></div>
+    </div>
+  </div>
+
+  <section class="r-end">
+    <div class="eyebrow" style="margin-bottom:16px">Go further</div>
+<div class="r-end-grid"><a class="pc rv" href="/vault/video-prompt-builder/" style="margin:0"><span class="sheen"></span><div class="corners"><i></i><i></i><i></i><i></i></div>
+<div class="pc-top"><span class="badge badge-premium">Premium</span><span class="lbl">Video</span></div>
+<h4>The Ultimate Seedance Video Prompt Builder</h4><p>The shot-by-shot prompt engine for Seedance 2.0 and 2.5. Premise device, signature effect, density map and energy arc, written as a director's document.</p><span class="go">See what is inside <span class="arw">&rarr;</span></span></a><a class="pc rv" href="/vault/ugc-factory/" style="margin:0"><span class="sheen"></span><div class="corners"><i></i><i></i><i></i><i></i></div>
+<div class="pc-top"><span class="badge badge-free">Free</span><span class="lbl">UGC</span></div>
+<h4>The AI UGC Factory System</h4><p>Angle mining, the four beat script formula, creator casting and the batch matrix that turns one angle into ten ads.</p><span class="go">Open the workflow <span class="arw">&rarr;</span></span></a><a class="pc rv" href="/vault/locked-cast/" style="margin:0"><span class="sheen"></span><div class="corners"><i></i><i></i><i></i><i></i></div>
+<div class="pc-top"><span class="badge badge-free">Free</span><span class="lbl">Video</span></div>
+<h4>The Locked-Cast Production System</h4><p>One character, one product, fifty ads that all look like one brand. The full asset setup and Higgsfield workflow.</p><span class="go">Open the workflow <span class="arw">&rarr;</span></span></a></div>
+    <div class="nextprev">
+  <a class="np" href="/vault/talking-head/"><small>&larr; Previous</small><b>Talking Head + Subtitles + B-Rolls</b></a>
+  <a class="np next" href="/vault/social-post-writer/"><small>Next &rarr;</small><b>The Social Post Writer</b></a>
+</div>
+  </section>
+  </main>
+  <footer class="v-foot">
+  <div class="v-foot-in">
+    <span class="cr">&copy; 2026 Kaloyan Vasilev</span>
+    <nav>
+      <a href="mailto:info@pushtoglory.com">info@pushtoglory.com</a>
+    </nav>
+  </div>
+</footer>
+</div>
+<script src="/vault/assets/vault.js?v=mtxhnuxg"></script>
+<script src="/vault/assets/resource.js?v=mtxhnuxg"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ultimate Seedance Video Prompt Builder | The Vault</title>
+<meta name="description" content="A Claude skill that turns a one line video idea into a production ready, shot by shot Seedance 2.0 and 2.5 prompt with timecodes, camera, speed, effects density and an energy arc.">
+
+<link rel="canonical" href="https://pushtoglory.com/vault/video-prompt-builder/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Ultimate Seedance Video Prompt Builder | The Vault">
+<meta property="og:description" content="A Claude skill that turns a one line video idea into a production ready, shot by shot Seedance 2.0 and 2.5 prompt with timecodes, camera, speed, effects density and an energy arc.">
+<meta property="og:url" content="https://pushtoglory.com/vault/video-prompt-builder/">
+<meta property="og:image" content="https://pushtoglory.com/vault/assets/vault-share.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07070A">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="256x256">
+<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Syne:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/vault/assets/vault.css?v=mtxhnuxg">
+
+</head>
+<body data-slug="video-prompt-builder" data-tier="premium">
+<div class="v-page">
+  <div class="v-noise" aria-hidden="true"></div>
+  <header class="v-head">
+  <div class="v-head-in">
+    <a class="v-brand" href="/vault/" aria-label="The Vault home">
+      <span class="v-avatar"><img src="/kaloyan.jpg" alt="Kaloyan Vasilev" width="32" height="32"></span>
+      <span class="v-brand-word">THE VAULT</span>
+    </a>
+    <nav class="v-nav" aria-label="Vault">
+      <a href="/vault/#library">Library</a>
+      <a href="/vault/#pricing">Pricing</a>
+    </nav>
+    <button class="v-burger" type="button" data-v="burger" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <div class="v-acct" id="vAcct"></div>
+  </div>
+  <div class="v-progress" aria-hidden="true"></div>
+</header>
+  <main>
+  <section class="r-hero premium">
+    <div class="r-hero-in">
+      <div class="r-crumb"><a href="/vault/#library">The Vault</a><span class="sep"></span><span>Video</span></div>
+      <div class="r-badges"><span class="badge badge-premium">Premium</span><span class="badge badge-soft">Workflow 07</span><span class="badge badge-open" data-when="member" hidden>Unlocked</span></div>
+      <h1 class="r-title">The Ultimate Seedance <em>Video Prompt Builder</em></h1>
+      <p class="r-sub">Give it a one line idea. Get back a director level, shot by shot prompt for Seedance 2.0 and 2.5, with the one shot the whole video hangs on already marked.</p>
+      <div class="r-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9 min read</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>Claude &middot; Seedance 2.0 and 2.5 &middot; Higgsfield</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 20V14M12 20V9M19 20V4"/></svg>Beginner</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>2 files included</span>
+      </div>
+      <div class="r-author"><span class="v-avatar"><img src="/kaloyan.jpg" alt="Kaloyan Vasilev" width="40" height="40"></span><div><b>Kaloyan Vasilev</b><span>AI Video Expert</span></div></div>
+      <div class="r-actions">
+        <button class="btn btn-gold btn-lg" type="button" data-v="plans" data-when="locked">Unlock with Premium<span class="sheen"></span></button>
+        <button class="btn btn-ghost btn-lg" type="button" data-v="signin" data-when="locked">Member sign in</button>
+        <a class="btn btn-gold btn-lg" href="#premiumRoot" data-when="member" hidden>Open the workflow<span class="sheen"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="r-layout">
+    <aside class="r-toc" aria-label="On this page">
+      <span class="eyebrow">On this page</span>
+      <ol id="tocList"></ol>
+    </aside>
+    <div class="r-main" id="article" data-progress>
+      <details class="r-toc-mobile" id="tocM"><summary>On this page</summary><ol id="tocListM"></ol></details>
+      <div class="prose">
+<p class="lead">Most video prompts are a paragraph of adjectives. The model fills every gap with a guess, and you pay for the guesses in re-rolls. This skill writes the prompt the way a director writes a shot list: every shot timed, every camera move named, every transition decided.</p><p>You describe the video in one or two lines. &quot;A guy leaves a tumbler in a hot car and it is still cold&quot; is enough. Claude reads the brief, finds the visual device that proves the claim, and hands back a prompt you paste straight into Seedance.</p><h2 id="what-you-get-back-every-time" data-toc="What you get back, every time"><span class="kick">What it does</span>What you get back, every time</h2><ul class="dl"><li><i>✓</i><span><strong>A premise note</strong> that names the one creative decision the whole video hangs on, so you can push back before anything renders</span></li><li><i>✓</i><span><strong>A shot by shot timeline</strong> with timecodes, effects, camera move, speed and an exit for every shot</span></li><li><i>✓</i><span><strong>The signature shot, marked</strong>: the one shot that is the entire ad in three seconds</span></li><li><i>✓</i><span><strong>A master effects inventory</strong> with counts and the reason each effect is there</span></li><li><i>✓</i><span><strong>An effects density map</strong>, so the video has rhythm instead of a flat wall of effects</span></li><li><i>✓</i><span><strong>An energy arc</strong> broken into acts, so the video lands instead of stopping</span></li><li><i>✓</i><span><strong>Generator settings and production notes</strong>, including what to do when the key shot fails</span></li><li><i>✓</i><span><strong>Identity and product locks</strong> in every prompt, the main reason AI ads fall apart</span></li></ul><h2 id="the-last-mile-of-every-video-workflow" data-toc="The last mile of every video workflow"><span class="kick">Where it fits</span>The last mile of every video workflow</h2><p><a href="/vault/seedance-film/">The Seedance 2.0 Film System</a> gives you the producer layer for free: story, continuity, the scene map and one brief per generation. This is the prompt layer it hands off to. The free skill literally stops at the prompts and asks for it.</p><p>It also works on its own. Product spots, brand films, ad concepts, anything you want to see move. Give it a claim instead of a scene (&quot;our shoe is light&quot;, not &quot;show a shoe on a table&quot;) and it builds the whole video around proving it.</p><h2 id="inside-premium" data-toc="Inside Premium"><span class="kick">What is inside</span>Inside Premium</h2><ul class="arrows"><li><strong>The skill file</strong>, installed into Claude in about two minutes</li><li><strong>The full guide</strong>: how to install it, how to brief it, how to read what it returns, how reference tags work, how to choose length and model, and how to rescue a signature shot that will not render</li><li><strong>The quick start</strong> as a Word document you can keep next to you</li><li><strong>Every update</strong>, whenever Seedance changes and the skill changes with it</li></ul><p>It is for anyone who already makes AI video and is tired of re-rolling, and for anyone starting out who wants their first prompts to look like they came from someone who has done this a hundred times.</p>
+      </div>
+      <div class="lock" id="lockPanel">
+  <div class="lock-fade" aria-hidden="true"><div class="sk h"></div><div class="sk"></div><div class="sk" style="width:92%"></div><div class="sk" style="width:84%"></div><div class="sk h" style="width:36%"></div><div class="sk"></div><div class="sk" style="width:76%"></div></div>
+  <div class="lock-card"><div class="lock-in">
+    <div class="corners"><i></i><i></i><i></i><i></i></div>
+    <div class="lock-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4.5" y="10.5" width="15" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></div>
+    <h3>The full workflow is in Premium</h3>
+    <p>The step by step build and the files (video-prompt-builder.skill, Video Prompt Builder - Quick Start.docx) open the moment you join. So does every other premium workflow.</p>
+    <div class="lock-plans">
+      <button class="btn btn-gold btn-block" type="button" data-checkout="yearly">$5.99 / mo yearly<span class="sheen"></span></button>
+      <button class="btn btn-ghost btn-block" type="button" data-checkout="monthly">$10.99 / mo monthly</button>
+    </div>
+    <div class="lock-alt">Already a member? <button type="button" data-v="signin">Sign in</button> &middot; <a href="/vault/#pricing">Compare plans</a></div>
+  </div></div>
+</div>
+<div id="premiumRoot" hidden></div>
+    </div>
+  </div>
+
+  <section class="r-end">
+    <div class="eyebrow" style="margin-bottom:16px">Go further</div>
+<div class="r-end-grid"><a class="pc rv" href="/vault/seedance-film/" style="margin:0"><span class="sheen"></span><div class="corners"><i></i><i></i><i></i><i></i></div>
+<div class="pc-top"><span class="badge badge-free">Free</span><span class="lbl">Film</span></div>
+<h4>The Seedance 2.0 Film System</h4><p>Four blind generations, one film that stitches with no post. Includes the free seedance-film Claude skill.</p><span class="go">Open the workflow <span class="arw">&rarr;</span></span></a><a class="pc rv" href="/vault/talking-head/" style="margin:0"><span class="sheen"></span><div class="corners"><i></i><i></i><i></i><i></i></div>
+<div class="pc-top"><span class="badge badge-premium">Premium</span><span class="lbl">UGC</span></div>
+<h4>Talking Head + Subtitles + B-Rolls</h4><p>The locked template that produces two stitchable clips of the same creator, plus product B-roll and burned-in subtitles. Same face, same outfit, same room, every clip.</p><span class="go">See what is inside <span class="arw">&rarr;</span></span></a><a class="pc rv" href="/vault/higgsfield-autopilot/" style="margin:0"><span class="sheen"></span><div class="corners"><i></i><i></i><i></i><i></i></div>
+<div class="pc-top"><span class="badge badge-premium">Premium</span><span class="lbl">Automation</span></div>
+<h4>Higgsfield Autopilot</h4><p>Write your scenes once, run one command, generate on your own account. Resumes after a crash and never spends credits it was not told to.</p><span class="go">See what is inside <span class="arw">&rarr;</span></span></a></div>
+    <div class="nextprev">
+  <a class="np" href="/vault/fragrance-compliment/"><small>&larr; Previous</small><b>The Fragrance Compliment System</b></a>
+  <a class="np next" href="/vault/talking-head/"><small>Next &rarr;</small><b>Talking Head + Subtitles + B-Rolls</b></a>
+</div>
+  </section>
+  </main>
+  <footer class="v-foot">
+  <div class="v-foot-in">
+    <span class="cr">&copy; 2026 Kaloyan Vasilev</span>
+    <nav>
+      <a href="mailto:info@pushtoglory.com">info@pushtoglory.com</a>
+    </nav>
+  </div>
+</footer>
+</div>
+<script src="/vault/assets/vault.js?v=mtxhnuxg"></script>
+<script src="/vault/assets/resource.js?v=mtxhnuxg"></script>
+</body>
+</html>
